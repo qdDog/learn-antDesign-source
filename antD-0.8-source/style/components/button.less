@@ -1,0 +1,78 @@
+@import "../mixins/index";
+@btn-prefix-cls: ~"@{css-prefix}btn";
+
+// Button styles
+// -----------------------------
+.@{btn-prefix-cls} {
+  .btn;
+  .btn-default;
+
+  &-primary {
+    .btn-primary;
+
+    .@{btn-prefix-cls}-group &:not(:first-child):not(:last-child) {
+      border-right-color: @btn-group-border;
+      border-left-color: @btn-group-border;
+    }
+
+    .@{btn-prefix-cls}-group &:first-child {
+      &:not(:last-child) {
+        border-right-color: @btn-group-border;
+      }
+    }
+
+    .@{btn-prefix-cls}-group &:last-child:not(:first-child) {
+      border-left-color: @btn-group-border;
+    }
+
+    .@{btn-prefix-cls}-group & + .@{btn-prefix-cls} {
+      border-left-color: @btn-group-border;
+    }
+  }
+
+  &-ghost {
+    .btn-ghost;
+  }
+
+  &-circle, &-circle-outline {
+    .btn-circle(@btn-prefix-cls);
+  }
+
+  &-circle-outline {
+    .btn-circle-outline;
+  }
+
+  &-loading {
+    padding-right: 31px;
+    pointer-events: none;
+    opacity: 0.75;
+    &:after {
+      font-family: anticon;
+      .animation(loadingCircle 1s infinite linear);
+      content: "\e610";
+      position: absolute;
+      height: 12px;
+      line-height: 12px;
+      right: 13px;
+      top: 50%;
+      margin-top: -6px;
+    }
+  }
+
+  &-sm&-loading {
+    padding-right: 24px;
+    &:after {
+      right: 8px;
+    }
+  }
+
+  &-menu {
+    > .@{iconfont-css-prefix} {
+      .iconfont-size-under-12px(10px);
+    }
+  }
+
+  &-group {
+    .btn-group(@btn-prefix-cls);
+  }
+}
